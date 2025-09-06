@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎹 가상 피아노</h1>
+  <h1>🎹 가상 피아노 건반: q,w,e,r,t,y,u, 2,3,5,6,7</h1>
   <div class="piano">
     <div class="key white" data-note="C"></div>
     <div class="key black" data-note="C-S"></div>
@@ -21,6 +21,7 @@
     <div class="key black" data-note="A-S"></div>
     <div class="key white" data-note="B"></div>
   </div>
+  <div id="location"></div>
   <script>
 const keys = document.querySelectorAll('.key');
 
@@ -35,60 +36,80 @@ keys.forEach(key => {
 document.onkeydown = (event) => {
   var e = event || window.event || arguments.callee.caller.arguments[0];
   if (e && 50 <= e.keyCode && e.keyCode <= 90) {
-	var audio;
+	let audio;
+	let keyboard;
     switch (e.keyCode) {
 		case 81:
+			keyboard = "q";
 			audio = new Audio(`sounds/C.mp3`);
-			audio.play();
+			audio.play();			
 			break;
 		case 50:
+			keyboard = "2";
 			audio = new Audio(`sounds/C-S.mp3`);
 			audio.play();
 			break;
 		case 87:
+			keyboard = "w";
 			audio = new Audio(`sounds/D.mp3`);
 			audio.play();
 			break;
 		case 51:
+			keyboard = "3";
 			audio = new Audio(`sounds/D-S.mp3`);
 			audio.play();
 			break;
 		case 69:
+			keyboard = "e";
 			audio = new Audio(`sounds/E.mp3`);
 			audio.play();
 			break;
 		case 82:
+			keyboard = "r";
 			audio = new Audio(`sounds/F.mp3`);
 			audio.play();
 			break;
 		case 53:
+			keyboard = "5";
 			audio = new Audio(`sounds/F-S.mp3`);
 			audio.play();
 			break;
-		case 84:
+		case 84:		
+			keyboard = "t";
 			audio = new Audio(`sounds/G.mp3`);
 			audio.play();
 			break;
 		case 54:
+			keyboard = "6";
 			audio = new Audio(`sounds/G-S.mp3`);
 			audio.play();
 			break;
 		case 89:
+			keyboard = "y";
 			audio = new Audio(`sounds/A.mp3`);
 			audio.play();
 			break;
 		case 55:
+			keyboard = "7";
 			audio = new Audio(`sounds/A-S.mp3`);
 			audio.play();
 			break;
 		case 85:
+			keyboard = "u";
 			audio = new Audio(`sounds/B.mp3`);
 			audio.play();
 			break;
 		}
+		
+		if (keyboard !== undefined) {
+			document.getElementById("location").innerText= "you clicked " + keyboard;
+		} else {
+			document.getElementById("location").innerText= "";
+		}	
 	}
 }
 
   </script>
 </body>
 </html>
+
