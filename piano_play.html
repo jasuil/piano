@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>가상 피아노</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎹 가상 피아노</h1>
+  <div class="piano">
+    <div class="key white" data-note="C"></div>
+    <div class="key black" data-note="C-S"></div>
+    <div class="key white" data-note="D"></div>
+    <div class="key black" data-note="D-S"></div>
+    <div class="key white" data-note="E"></div>
+    <div class="key white" data-note="F"></div>
+    <div class="key black" data-note="F-S"></div>
+    <div class="key white" data-note="G"></div>
+    <div class="key black" data-note="G-S"></div>
+    <div class="key white" data-note="A"></div>
+    <div class="key black" data-note="A-S"></div>
+    <div class="key white" data-note="B"></div>
+  </div>
+  <script>
+const keys = document.querySelectorAll('.key');
+
+keys.forEach(key => {
+  key.addEventListener('click', () => {
+    const note = key.dataset.note;
+    const audio = new Audio(`sounds/${note}.mp3`);
+    audio.play();
+  });
+});
+
+document.onkeydown = (event) => {
+  var e = event || window.event || arguments.callee.caller.arguments[0];
+  if (e && 50 <= e.keyCode && e.keyCode <= 90) {
+	var audio;
+    switch (e.keyCode) {
+		case 81:
+			audio = new Audio(`sounds/C.mp3`);
+			audio.play();
+			break;
+		case 50:
+			audio = new Audio(`sounds/C-S.mp3`);
+			audio.play();
+			break;
+		case 87:
+			audio = new Audio(`sounds/D.mp3`);
+			audio.play();
+			break;
+		case 51:
+			audio = new Audio(`sounds/D-S.mp3`);
+			audio.play();
+			break;
+		case 69:
+			audio = new Audio(`sounds/E.mp3`);
+			audio.play();
+			break;
+		case 82:
+			audio = new Audio(`sounds/F.mp3`);
+			audio.play();
+			break;
+		case 53:
+			audio = new Audio(`sounds/F-S.mp3`);
+			audio.play();
+			break;
+		case 84:
+			audio = new Audio(`sounds/G.mp3`);
+			audio.play();
+			break;
+		case 54:
+			audio = new Audio(`sounds/G-S.mp3`);
+			audio.play();
+			break;
+		case 89:
+			audio = new Audio(`sounds/A.mp3`);
+			audio.play();
+			break;
+		case 55:
+			audio = new Audio(`sounds/A-S.mp3`);
+			audio.play();
+			break;
+		case 85:
+			audio = new Audio(`sounds/B.mp3`);
+			audio.play();
+			break;
+		}
+	}
+}
+
+  </script>
+</body>
+</html>
