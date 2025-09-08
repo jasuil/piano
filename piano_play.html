@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎹 가상 피아노 건반: q,w,e,r,t,y,u, 2,3,5,6,7</h1>
+  <h1>🎹 가상 피아노 건반</h1>
+  <h2>key board: q,w,e,r,t,y,u, 2,3,5,6,7</h2>
   <div class="piano">
     <div class="key white" data-note="C"></div>
     <div class="key black" data-note="C-S"></div>
@@ -23,6 +24,11 @@
   </div>
   <div id="location"></div>
   <script>
+function play_key(key_name) {
+	audio = new Audio(`sounds/`+ key_name +`.mp3`);
+	audio.play();
+}
+
 const keys = document.querySelectorAll('.key');
 
 keys.forEach(key => {
@@ -38,78 +44,116 @@ document.onkeydown = (event) => {
   if (e && 50 <= e.keyCode && e.keyCode <= 90) {
 	let audio;
 	let keyboard;
+	let key_index;
     switch (e.keyCode) {
 		case 81:
 			keyboard = "q";
-			audio = new Audio(`sounds/C.mp3`);
-			audio.play();			
+			key_index = 0;
+			play_key("C");
 			break;
 		case 50:
 			keyboard = "2";
-			audio = new Audio(`sounds/C-S.mp3`);
-			audio.play();
+			key_index = 1;
+			play_key("C-S");
 			break;
 		case 87:
 			keyboard = "w";
-			audio = new Audio(`sounds/D.mp3`);
-			audio.play();
+			key_index = 2;			
+			play_key("D");
 			break;
 		case 51:
 			keyboard = "3";
-			audio = new Audio(`sounds/D-S.mp3`);
-			audio.play();
+			key_index = 3;			
+			play_key("D-S");			
 			break;
 		case 69:
 			keyboard = "e";
-			audio = new Audio(`sounds/E.mp3`);
-			audio.play();
+			key_index = 4;			
+			play_key("E");
 			break;
 		case 82:
 			keyboard = "r";
-			audio = new Audio(`sounds/F.mp3`);
-			audio.play();
+			key_index = 5;			
+			play_key("F");			
 			break;
 		case 53:
 			keyboard = "5";
-			audio = new Audio(`sounds/F-S.mp3`);
-			audio.play();
+			key_index = 6;
+			play_key("F-S");			
 			break;
 		case 84:		
 			keyboard = "t";
-			audio = new Audio(`sounds/G.mp3`);
-			audio.play();
+			key_index = 7;
+			play_key("G");			
 			break;
 		case 54:
 			keyboard = "6";
-			audio = new Audio(`sounds/G-S.mp3`);
-			audio.play();
+			key_index = 8;
+			play_key("G-S");			
 			break;
 		case 89:
 			keyboard = "y";
-			audio = new Audio(`sounds/A.mp3`);
-			audio.play();
+			key_index = 9;
+			play_key("A");
 			break;
 		case 55:
 			keyboard = "7";
-			audio = new Audio(`sounds/A-S.mp3`);
-			audio.play();
+			key_index = 10;
+			play_key("A-S");			
 			break;
 		case 85:
 			keyboard = "u";
-			audio = new Audio(`sounds/B.mp3`);
-			audio.play();
+			key_index = 11;			
+			play_key("B");
 			break;
 		}
 		
-		if (keyboard !== undefined) {
-			document.getElementById("location").innerText= "you clicked " + keyboard;
-		} else {
-			document.getElementById("location").innerText= "";
-		}	
+		keys[key_index].style.backgroundColor = 'yellow';
+	}
+}
+
+document.onkeyup = (event) => {
+	var e = event || window.event || arguments.callee.caller.arguments[0];	
+	switch (e.keyCode) {
+		case 81:
+			keys[0].style.backgroundColor = 'white';
+			break;
+		case 87:
+			keys[2].style.backgroundColor = 'white';		
+			break;
+		case 69:		
+			keys[4].style.backgroundColor = 'white';			
+			break;
+		case 82:
+			keys[5].style.backgroundColor = 'white';		
+			break;
+		case 84:		
+			keys[7].style.backgroundColor = 'white';		
+			break;
+		case 89:		
+			keys[9].style.backgroundColor = 'white';		
+			break;
+		case 85:
+			keys[11].style.backgroundColor = 'white';			
+			break;
+		case 50:
+			keys[1].style.backgroundColor = 'black';		
+			break;
+		case 51:		
+			keys[3].style.backgroundColor = 'black';		
+			break;
+		case 53:		
+			keys[6].style.backgroundColor = 'black';		
+			break;
+		case 54:
+			keys[8].style.backgroundColor = 'black';		
+			break;
+		case 55:
+			keys[10].style.backgroundColor = 'black';			
+			break;			
 	}
 }
 
   </script>
 </body>
 </html>
-
